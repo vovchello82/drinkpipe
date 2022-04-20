@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <artifactId>drinkpipe-backend</artifactId>
+  <description>Backend fuer drinkpipe</description>
+  <groupId>de.drinkpipe.</groupId>
+
+  <modelVersion>4.0.0</modelVersion>
+  <name>drinkpipe</name>
+  <parent>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <groupId>org.springframework.boot</groupId>
+    <relativePath/>
+    <version>2.6.2</version> <!-- lookup parent from repository -->
+  </parent>
+
+  <version>0.0.1-SNAPSHOT</version>
+
+  <properties>
+    <checkstyle.location>.idea/custom_google_checks.xml</checkstyle.location>
+    <java.version>11</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <image>
+            <name>${project.artifactId}</name>
+          </image>
+        </configuration>
+        <groupId>org.springframework.boot</groupId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>liquibase-core</artifactId>
+      <groupId>org.liquibase</groupId>
+      <version>4.8.0</version>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>org.springframework.boot</groupId>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-devtools</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <optional>true</optional>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <artifactId>postgresql</artifactId>
+      <groupId>org.postgresql</groupId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <artifactId>h2</artifactId>
+      <groupId>com.h2database</groupId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <scope>provided</scope>
+      <version>1.18.22</version>
+    </dependency>
+
+    <dependency>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <artifactId>spring-security-test</artifactId>
+      <groupId>org.springframework.security</groupId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${DATABASE_FQDN}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:db/migration/changelog-main.xml
+    url: ${spring.datasource.url}
+    contexts: main
+    password: ${spring.datasource.password}
+    user: ${spring.datasource.username}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
