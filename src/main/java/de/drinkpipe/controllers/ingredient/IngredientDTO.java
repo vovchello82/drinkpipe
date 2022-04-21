@@ -1,5 +1,6 @@
 package de.drinkpipe.controllers.ingredient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,6 +16,7 @@ public class IngredientDTO {
   @NotEmpty
   private String portion;
   @NotEmpty
+  @JsonIgnore
   private String mixtureId;
   @NotEmpty
   private String unitId;

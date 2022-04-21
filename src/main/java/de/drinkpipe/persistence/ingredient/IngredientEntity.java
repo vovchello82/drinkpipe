@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.PrePersist;
@@ -32,14 +33,14 @@ public class IngredientEntity implements Serializable {
 	@EmbeddedId
 	private IngredientId id;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@MapsId("unitId")
 	private UnitEntity unit;
 
 	@Column(name = "portion", nullable = false)
 	private String portion;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@MapsId("mixtureId")
 	private MixtureEntity mixture;
 
