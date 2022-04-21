@@ -17,7 +17,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="db_units")
+@Table(name = "dp_units")
 public class UnitEntity extends PieceEntity {
 
 	/**

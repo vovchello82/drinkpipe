@@ -5,6 +5,7 @@ import de.drinkpipe.persistence.entity.Flavour;
 import de.drinkpipe.persistence.entity.PieceEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import lombok.Getter;
@@ -20,7 +21,7 @@ public class CategoryEntity extends PieceEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Enumerated
+	@Enumerated(value = EnumType.STRING)
 	@Column(name = "type", nullable = false)
 	private CategoryType type = CategoryType.NONE;
 

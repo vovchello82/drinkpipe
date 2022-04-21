@@ -22,10 +22,12 @@ public class IngredientService {
   public Optional<IngredientEntity> applyIngredient(IngredientDTO ingredientDTO) {
     Optional<UnitEntity> unit = unitService.findById(ingredientDTO.getUnitId());
     if (unit.isEmpty()) {
+      log.warn("unit not found: " + ingredientDTO.getUnitId());
       return Optional.empty();
     }
-    Optional<MixtureEntity> mixture = mixtureService.findById(ingredientDTO.getUnitId());
+    Optional<MixtureEntity> mixture = mixtureService.findById(ingredientDTO.getMixtureId());
     if (mixture.isEmpty()) {
+      log.warn("mix not found: " + ingredientDTO.getMixtureId());
       return Optional.empty();
     }
 
@@ -47,5 +49,4 @@ public class IngredientService {
     return Optional.of(ingredientEntity);
   }
 
-  
 }

@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 @Slf4j
+@Service
 public class CategoryService extends RepoService<CategoryRepository, CategoryEntity> {
 
 
@@ -26,6 +28,10 @@ public class CategoryService extends RepoService<CategoryRepository, CategoryEnt
       throw new ServiceException("Error on converting entity to dto", e);
     }
 
+  }
+
+  public Optional<CategoryEntity> findByName(String name) {
+    return repository.findByName(name);
   }
 
   public List<CategoryDTO> findAllAndMap() throws ServiceException {

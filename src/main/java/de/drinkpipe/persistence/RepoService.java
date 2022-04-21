@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
 public abstract class RepoService<R extends JpaRepository<E, String>, E> {
 

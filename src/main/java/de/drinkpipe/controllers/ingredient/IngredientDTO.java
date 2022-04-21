@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class IngredientDTO {
 
-  private String id;
   @NotEmpty
   private String portion;
   @NotEmpty

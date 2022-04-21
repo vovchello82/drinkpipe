@@ -11,7 +11,7 @@ FROM eclipse-temurin:11.0.14.1_1-jre-focal
 EXPOSE 8080
 USER nobody
 WORKDIR /app
-COPY ssl/ ./
+#COPY ssl/ ./
 COPY --from=builder /app/dependencies/ ./
 COPY --from=builder /app/spring-boot-loader/ ./
 COPY --from=builder /app/snapshot-dependencies/ ./

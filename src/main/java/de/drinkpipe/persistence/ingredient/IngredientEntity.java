@@ -2,6 +2,7 @@ package de.drinkpipe.persistence.ingredient;
 
 import de.drinkpipe.persistence.mixture.MixtureEntity;
 import de.drinkpipe.persistence.unit.UnitEntity;
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -21,10 +22,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "dp_ingredients")
-public class IngredientEntity {
+public class IngredientEntity implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 

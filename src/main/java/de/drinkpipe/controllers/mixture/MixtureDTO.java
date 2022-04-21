@@ -1,6 +1,6 @@
 package de.drinkpipe.controllers.mixture;
 
-import de.drinkpipe.persistence.ingredient.IngredientEntity;
+import de.drinkpipe.controllers.ingredient.IngredientDTO;
 import java.util.Set;
 import javax.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -19,5 +19,5 @@ public class MixtureDTO {
   private String name;
   @NotEmpty
   private String description;
-  private Set<IngredientEntity> ingredients;
+  private Set<IngredientDTO> ingredients;
 }

@@ -1,9 +1,7 @@
 package de.drinkpipe.controllers.unit;
 
-import de.drinkpipe.controllers.category.CategoryDTO;
 import de.drinkpipe.persistence.entity.Flavour;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +19,6 @@ public class UnitDTO {
   private String ean;
   private Flavour flavour;
   private String flavourRawData;
-  @NotNull
-  private CategoryDTO category;
+  @NotEmpty
+  private String categoryName;
 }
