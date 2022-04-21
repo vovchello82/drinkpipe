@@ -1,5 +1,8 @@
-package de.drinkpipe.persistence.entity;
+package de.drinkpipe.persistence.category;
 
+import de.drinkpipe.persistence.entity.CategoryType;
+import de.drinkpipe.persistence.entity.Flavour;
+import de.drinkpipe.persistence.entity.PieceEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;

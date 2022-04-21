@@ -1,5 +1,7 @@
-package de.drinkpipe.persistence.entity;
+package de.drinkpipe.persistence.mixture;
 
+import de.drinkpipe.persistence.entity.PieceEntity;
+import de.drinkpipe.persistence.ingredient.IngredientEntity;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;

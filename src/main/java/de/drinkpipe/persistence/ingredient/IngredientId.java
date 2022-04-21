@@ -1,7 +1,6 @@
-package de.drinkpipe.persistence.entity;
+package de.drinkpipe.persistence.ingredient;
 
 import java.io.Serializable;
-import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -22,9 +21,9 @@ public class IngredientId implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "mixture_id", nullable = false)
-	private UUID mixtureId;
+	private String mixtureId;
 	@Column(name = "unit_id", nullable = false)
-	private UUID unitId;
+	private String unitId;
 
 	@Override
 	public int hashCode() {

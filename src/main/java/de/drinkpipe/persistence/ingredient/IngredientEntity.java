@@ -1,11 +1,14 @@
-package de.drinkpipe.persistence.entity;
+package de.drinkpipe.persistence.ingredient;
 
+import de.drinkpipe.persistence.mixture.MixtureEntity;
+import de.drinkpipe.persistence.unit.UnitEntity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +33,6 @@ public class IngredientEntity {
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@MapsId("unitId")
-//	@JoinColumn(name = "unit_id", nullable = false, referencedColumnName = "unit_id", insertable = false, updatable = false)
 	private UnitEntity unit;
 
 	@Column(name = "portion", nullable = false)
@@ -38,9 +40,13 @@ public class IngredientEntity {
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	@MapsId("mixtureId")
-//	@JoinColumn(name = "", nullable = false, referencedColumnName = "mixture_id", insertable = false, updatable = false)
 	private MixtureEntity mixture;
-	
+
+	@PrePersist
+	void generateId() {
+		this.id = new IngredientId(mixture.getId(), unit.getId());
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
