@@ -19,6 +19,14 @@ public class IngredientService {
   private final MixtureService mixtureService;
   private final IngredientRepository ingredientRepository;
 
+  public IngredientEntity save(IngredientEntity ingredient) {
+    return ingredientRepository.save(ingredient);
+  }
+
+  public Optional<IngredientEntity> findById(IngredientId id) {
+    return ingredientRepository.findById(id);
+  }
+
   public Optional<IngredientEntity> applyIngredient(IngredientDTO ingredientDTO) {
     Optional<UnitEntity> unit = unitService.findById(ingredientDTO.getUnitId());
     if (unit.isEmpty()) {

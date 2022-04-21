@@ -15,14 +15,24 @@ import lombok.Setter;
 @Entity
 @Table(name = "dp_mixtures")
 public class MixtureEntity extends PieceEntity {
+
 	@Column(name = "description")
 	private String description;
 
-	@OneToMany(mappedBy = "mixture")
+	@OneToMany(mappedBy = "mixture", orphanRemoval = true)
 	private Set<IngredientEntity> ingredients;
 
 	public MixtureEntity() {
 		super();
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		return super.equals(o);
+	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
 }

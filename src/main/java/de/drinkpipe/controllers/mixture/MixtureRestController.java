@@ -1,5 +1,6 @@
 package de.drinkpipe.controllers.mixture;
 
+import de.drinkpipe.bussineslogic.exceptions.ObjectNotFoundException;
 import de.drinkpipe.bussineslogic.exceptions.ServiceException;
 import de.drinkpipe.persistence.mixture.MixtureService;
 import java.util.List;
@@ -7,10 +8,12 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -42,6 +45,17 @@ public class MixtureRestController {
     }
 
     return ResponseEntity.internalServerError().build();
+  }
+
+  @PatchMapping("/{id}/add")
+  ResponseEntity<Void> addIngredientToMix(@PathVariable String id, @RequestParam String unitId,
+      @RequestParam String portion) {
+    try {
+      mixtureService.addUnitPortionToMixture(id, unitId, portion);
+    } catch (ObjectNotFoundException e) {
+      return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok().build();
   }
 
   @GetMapping

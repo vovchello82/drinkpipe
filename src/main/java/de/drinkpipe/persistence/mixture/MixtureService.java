@@ -2,10 +2,16 @@ package de.drinkpipe.persistence.mixture;
 
 import com.github.dozermapper.core.Mapper;
 import com.github.dozermapper.core.MappingException;
+import de.drinkpipe.bussineslogic.exceptions.ObjectNotFoundException;
 import de.drinkpipe.bussineslogic.exceptions.ServiceException;
 import de.drinkpipe.controllers.ingredient.IngredientDTO;
 import de.drinkpipe.controllers.mixture.MixtureDTO;
 import de.drinkpipe.persistence.RepoService;
+import de.drinkpipe.persistence.ingredient.IngredientEntity;
+import de.drinkpipe.persistence.ingredient.IngredientId;
+import de.drinkpipe.persistence.ingredient.IngredientService;
+import de.drinkpipe.persistence.unit.UnitEntity;
+import de.drinkpipe.persistence.unit.UnitService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,8 +22,34 @@ import org.springframework.stereotype.Service;
 @Service
 public class MixtureService extends RepoService<MixtureRepository, MixtureEntity> {
 
-  public MixtureService(Mapper mapper, MixtureRepository repository) {
+  private final UnitService unitService;
+  private final IngredientService ingredientService;
+
+  public MixtureService(Mapper mapper, MixtureRepository repository, UnitService unitService,
+      IngredientService ingredientService) {
     super(mapper, repository);
+    this.unitService = unitService;
+    this.ingredientService = ingredientService;
+  }
+
+  public void addUnitPortionToMixture(String mixtureId, String unitId, String portion)
+      throws ObjectNotFoundException {
+    if (ingredientService.findById(new IngredientId(mixtureId, unitId)).isEmpty()) {
+      return;
+    }
+
+    MixtureEntity mixture = repository.findById(mixtureId)
+        .orElseThrow(() -> new ObjectNotFoundException("mixture not exists"));
+
+    UnitEntity unit = unitService.findById(unitId)
+        .orElseThrow(() -> new ObjectNotFoundException("unit not exists"));
+
+    IngredientEntity newIngredient = new IngredientEntity();
+    newIngredient.setMixture(mixture);
+    newIngredient.setUnit(unit);
+    newIngredient.setPortion(portion);
+
+    ingredientService.save(newIngredient);
   }
 
   private MixtureDTO mapEntityToDTO(MixtureEntity mixtureEntity) {
